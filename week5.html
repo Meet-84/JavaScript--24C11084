@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>Student marks Tracker</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .container * {
+            position: relative;
+            width: 300px;
+            margin: 10px;
+            left: 33vw;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2> Student Grade Tracker</h2>
+
+    <div class="container">
+
+        <input type="text" id="subject" placeholder="Enter Subject Name">
+        <input type="number" id="score" placeholder="Enter Score (0-100)">
+        <button onclick="addRecord()">Add Record</button>
+
+        <table id="recordTable">
+            <tr>
+                <th>Subject</th>
+                <th>Score</th>
+            </tr>
+        </table>
+
+        <p id="averageScore">Average Score: -</p>
+        <p id="grade">Grade: -</p>
+    </div>
+
+    <script>
+        let scores = [];
+        let student = [];
+
+        function addRecord() {
+
+            let subject = document.getElementById("subject").value;
+            let score = Number(document.getElementById("score").value);
+
+            if (subject === "" || score < 0 || score > 100) {
+                alert("Please enter a valid subject and score between 0–100.");
+                return;
+            }
+
+            scores.push(score);
+
+            let table = document.getElementById("recordTable");
+            let row = table.insertRow();
+
+            row.insertCell(0).innerHTML = subject;
+            row.insertCell(1).innerHTML = score;
+
+            document.getElementById("subject").value = "";
+            document.getElementById("score").value = "";
+
+            calculateGrade();
+        }
+
+        function calculateGrade() {
+            let total = scores.reduce((a, b) => a + b, 0);
+            let average = total / scores.length;
+
+            document.getElementById("averageScore").innerHTML = "Average Score: " + average.toFixed(2);
+
+            let grade = "F";
+            if (average >= 90) grade = "A";
+            else if (average >= 80) grade = "B";
+            else if (average >= 70) grade = "C";
+            else if (average >= 60) grade = "D";
+
+            document.getElementById("grade").innerHTML = "Grade: " + grade;
+        }
+    </script>
+
+</body>
+
+</html>
