@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #32167e, #25fc90);
+            /* purple → blue */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Converter box */
+        .converter {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 320px;
+        }
+
+        /* Title */
+        h2 {
+            margin-bottom: 20px;
+            color: #2575fc;
+            /* blue title */
+            font-weight: 600;
+        }
+
+        /* Input fields */
+        input {
+            padding: 12px;
+            width: 85%;
+            margin: 10px 0;
+            border: 2px solid #796863;
+            /* purple border */
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            background: #f3f0ff;
+            /* soft lavender */
+            color: #333;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2575fc;
+            /* blue border on focus */
+            background: #e8f0fe;
+            /* light blue bg */
+        }
+
+        /* Button */
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f1dfdf, #a7705f);
+            /* orange → red */
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #e65100, #bf360c);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="converter">
+        <h2>Rupees ⇆ Dollar Converter</h2>
+        <input type="number" id="inr" placeholder="Enter Rupees (₹)">
+        <input type="number" id="usd" placeholder="Enter Dollars ($)">
+        <button id="convertBtn">Convert</button>
+    </div>
+
+    <script>let rate = 83.5;
+
+        document.getElementById("convertBtn").onclick = function () {
+            let inr = document.getElementById("inr").value;
+            let usd = document.getElementById("usd").value;
+
+            if (inr && !usd) {
+                document.getElementById("usd").value = (inr / rate).toFixed(2);
+            }
+            else (usd && !inr)
+            {
+                document.getElementById("inr").value = (usd * rate).toFixed(2);
+            }
+
+        }
+    </script>
+</body>
+
+</html>
